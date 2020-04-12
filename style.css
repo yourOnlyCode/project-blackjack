@@ -1,0 +1,18 @@
+.container {
+
+}
+
+.player {
+    background: teal;
+    border: 5px solid black;
+    height: 150px;
+    width: 95px;
+    display: flex;
+}
+.dealer {
+    background: salmon;
+    border: 5px solid black;
+    height: 150px;
+    width: 95px;
+    display: flex;
+}
