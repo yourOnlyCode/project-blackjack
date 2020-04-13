@@ -136,18 +136,24 @@ function randomCard(deck) {
 const randomNum = (max) => {
     return Math.floor(Math.random() * Math.floor(max) + 2)
 }
-
+// starts game with dealer having one face up card and face down card and player two face up cards
 const startGame = () => {
     message.textContent = "Hit or Stand?"
     playerHand = [randomCard(deck), randomCard(deck)]
     pI1.setAttribute('src', playerHand[0])
     pI2.setAttribute('src', playerHand[1])
+
     dealerHand = [randomCard(deck), randomCard(deck)]
     dI1.setAttribute('src', dealerHand[0])
     dI2.setAttribute('src', cardBack)
+    // converts the image files names in the array into integer values to add to the scores
     playerScore(playerHand[0])
     playerScore(playerHand[1])
-    console.log(playerSum)
+    dealerScore(dealerHand[0])
+    dealerScore(dealerHand[1])
+
+    console.log(`player sum ${playerSum}`)
+    console.log(`dealerSum ${dealerSum}`)
     playerScoreCheck()
     dealerScoreCheck()
 }
@@ -166,10 +172,72 @@ submit.addEventListener('click', (evt) => {
         message.textContent = 'A bet must be placed to play!'
     }
 })
+// refreshes the board after game is finished
+const refreshBoard = () => {
+    playerSum = 0
+    dealerSum = 0
+    playerHand.length = 0
+    dealerHand.length = 0
+    pI1.removeAttribute('src', playerHand[0])
+    pI2.removeAttribute('src', playerHand[1])
+    pI3.removeAttribute('src', playerHand[2])
+    pI4.removeAttribute('src', playerHand[3])
+    pI5.removeAttribute('src', playerHand[4])
 
+    dI1.removeAttribute('src', dealerHand[0])
+    dI2.removeAttribute('src', dealerHand[1])
+    dI3.removeAttribute('src', dealerHand[2])
+    dI4.removeAttribute('src', dealerHand[3])
+    dI5.removeAttribute('src', dealerHand[4])
+}
+// After everything is said and done this will tally up the points and determine the winner
+const finalCheck = () => {
+    if (playerSum > dealerSum) {
+        alert(`You win! ${playerSum} to ${dealerSum}!`)
+        money += input * 2
+        refreshBoard()
+    }
+    if (playerSum < dealerSum) {
+        alert(`You lose! ${dealerSum} to ${playerSum}!`)
+        refreshBoard()
+    }
+    if (playerSum === dealerSum) {
+        alert(`Push! Tie game ${dealerSum} to ${playerSum}!`)
+        money += input
+        refreshBoard()
+    }
+}
+// Checks players score
+const playerScoreCheck = () => {
+    if (playerSum === 21) {
+        alert('Blackjack!')
+        money += input * 2
+        refreshBoard()
+    }
+    if (playerSum > 21) {
+        alert('Bust!')
+        refreshBoard()
+    }
+}
+
+// Checks dealers score
+const dealerScoreCheck = () => {
+    for (let i = 0; i < dealerHand.length; i++) {
+        dealerSum += dealerHand[i]
+        if (dealerSum > 21) {
+            alert("Dealer's bust! You win!")
+            playerHand.length = 0
+            dealerHand.length = 0
+        }
+    }
+}
+
+// for the hit button
 hit.addEventListener('click', (evt) => {
+    //checks the scores of both the player and dealer to make sure no one has passed 21
     playerScoreCheck()
     dealerScoreCheck()
+    // if there's no card in position 3, it will choose a random one for it
     if (playerHand.length <= 2) {
         playerHand.push(randomCard(deck))
         pI3.setAttribute('src', playerHand[2])
@@ -178,6 +246,7 @@ hit.addEventListener('click', (evt) => {
         dealerHand.push(randomCard(deck))
         dI2.setAttribute('src', dealerHand[1])
         dI3.setAttribute('src', cardBack)
+        dealerScore(dealerHand[2])
 
         console.log(playerSum)
         playerScoreCheck()
@@ -191,6 +260,8 @@ hit.addEventListener('click', (evt) => {
         dealerHand.push(randomCard(deck))
         dI3.setAttribute('src', dealerHand[2])
         dI4.setAttribute('src', cardBack)
+        dealerScore(dealerHand[3])
+
 
         console.log(playerSum)
         playerScoreCheck()
@@ -201,6 +272,8 @@ hit.addEventListener('click', (evt) => {
         pI5.setAttribute('src', playerHand[4])
         playerScore(playerHand[4])
 
+        dealerScore(dealerHand[4])
+
         console.log(playerSum)
         playerScoreCheck()
         dealerScoreCheck()
@@ -210,16 +283,26 @@ hit.addEventListener('click', (evt) => {
 stand.addEventListener('click', (evt) => {
     if (playerHand.length <= 2) {
         dI2.setAttribute('src', dealerHand[1])
+        dealerScore(dealerHand[1])
+        playerScoreCheck()
+        dealerScoreCheck()
         finalCheck()
     }
     else if (playerHand.length <= 3) {
         dI3.setAttribute('src', dealerHand[2])
+        dealerScore(dealerHand[2])
+        playerScoreCheck()
+        dealerScoreCheck()
         finalCheck()
     }
     else if (playerHand.length <= 4) {
         dI4.setAttribute('src', dealerHand[3])
+        dealerScore(dealerHand[3])
+        playerScoreCheck()
+        dealerScoreCheck()
         finalCheck()
     }
+    finalCheck()
 })
 
 const playerScore = (id) => {
@@ -306,53 +389,4 @@ const dealerScore = (id) => {
         return dealerSum += 11
     }
     return false
-}
-
-const playerScoreCheck = () => {
-    if (playerSum > 21) {
-        alert('Bust!')
-        refreshBoard()
-    }
-}
-
-const finalCheck = () => {
-    if (playerSum > dealerSum) {
-        alert(`You win! ${playerSum} to ${dealerSum}!`)
-    }
-    if (playerSum < dealerSum) {
-        alert(`You lose! ${dealerSum} to ${playerSum}!`)
-        refreshBoard()
-    }
-}
-
-
-
-const dealerScoreCheck = () => {
-    for (let i = 0; i < dealerHand.length; i++) {
-        dealerSum += dealerHand[i]
-        if (dealerSum > 21) {
-            alert("Dealer's bust! You win!")
-            playerHand.length = 0
-            dealerHand.length = 0
-        }
-    }
-}
-console.log(playerScore(playerHand))
-
-const refreshBoard = () => {
-    playerSum = 0
-    dealerSum = 0
-    playerHand.length = 0
-    dealerHand.length = 0
-    pI1.removeAttribute('src', playerHand[0])
-    pI2.removeAttribute('src', playerHand[1])
-    pI3.removeAttribute('src', playerHand[2])
-    pI4.removeAttribute('src', playerHand[3])
-    pI5.removeAttribute('src', playerHand[4])
-
-    dI1.removeAttribute('src', dealerHand[0])
-    dI2.removeAttribute('src', dealerHand[1])
-    dI3.removeAttribute('src', dealerHand[2])
-    dI4.removeAttribute('src', dealerHand[3])
-    dI5.removeAttribute('src', dealerHand[4])
 }
