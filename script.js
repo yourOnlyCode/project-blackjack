@@ -28,8 +28,11 @@ const stand = document.querySelector('#stand')
 const input = document.querySelector('#input')
 const submit = document.querySelector('#submit')
 let cards = ["ace", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"]
+
 let message = document.querySelector('#message')
 message.textContent = 'Place your bet!'
+
+// Define cards
 
 // Dealer card display area
 
@@ -75,19 +78,19 @@ submit.addEventListener('click', (evt) => {
 })
 
 hit.addEventListener('click', (evt) => {
-    if (p03.textContent === null || p03.textContent === undefined) {
+    if (p03 === null || p03 === undefined) {
         p03 = randomNum(13)
-        playerSum = playerSum + p03
+        playerSum = playerSum + Number(p03)
         console.log(playerSum)
     }
-    else if (p04.textContent === null || p04.textContent === undefined) {
+    else if (p04 === null || p04 === undefined) {
         p04 = randomNum(13)
-        playerSum = playerSum + p04
+        playerSum = playerSum + Number(p04)
         console.log(playerSum)
     }
-    else if (p05.textContent === null || p05.textContent === undefined) {
+    else if (p05 === null || p05 === undefined) {
         p05 = randomNum(13)
-        playerSum = playerSum + p05
+        playerSum = playerSum + Number(p05)
         console.log(playerSum)
     }
 })
