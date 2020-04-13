@@ -61,6 +61,7 @@ let deckScore = [
 
 let cardBack = "cards/Green_back.jpg"
 
+
 deck[0] = "cards/2C.jpg"
 deck[1] = "cards/3C.jpg"
 deck[2] = "cards/4C.jpg"
@@ -191,32 +192,35 @@ hit.addEventListener('click', (evt) => {
     }
 })
 
+const playerScore = (id) => {
+    if (id.match(/[2]/gi)) {
+        return playerSum += 2
+    }
+}
+
+
 const playerScoreCheck = () => {
     console.log('Player score being checked')
-    for (let i = 0; i < deck.length; i++) {
-        for (let j = 0; j < deckScore.length; j++) {
-            deck[i] === deckScore[i]
-            
-            playerSum += playerHand + deckScore[i]
-            if (playerSum > 21) {
-                alert('Bust!')
-                playerSum = 0
-                dealerSum = 0
-                playerHand.length = 0
-                dealerHand.length = 0
-                pI1.removeAttribute('src', playerHand[0])
-                pI2.removeAttribute('src', playerHand[1])
-                pI3.removeAttribute('src', playerHand[2])
-                pI4.removeAttribute('src', playerHand[3])
-                pI5.removeAttribute('src', playerHand[4])
-                dI1.removeAttribute('src', dealerHand[0])
-                dI2.removeAttribute('src', dealerHand[1])
-                dI3.removeAttribute('src', dealerHand[2])
-                dI4.removeAttribute('src', dealerHand[3])
-                dI5.removeAttribute('src', dealerHand[4])
-            }
-        }
+
+
+    if (playerSum > 21) {
+        alert('Bust!')
+        playerSum = 0
+        dealerSum = 0
+        playerHand.length = 0
+        dealerHand.length = 0
+        pI1.removeAttribute('src', playerHand[0])
+        pI2.removeAttribute('src', playerHand[1])
+        pI3.removeAttribute('src', playerHand[2])
+        pI4.removeAttribute('src', playerHand[3])
+        pI5.removeAttribute('src', playerHand[4])
+        dI1.removeAttribute('src', dealerHand[0])
+        dI2.removeAttribute('src', dealerHand[1])
+        dI3.removeAttribute('src', dealerHand[2])
+        dI4.removeAttribute('src', dealerHand[3])
+        dI5.removeAttribute('src', dealerHand[4])
     }
+}
 }
 
 
