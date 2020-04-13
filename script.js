@@ -145,6 +145,9 @@ const startGame = () => {
     dealerHand = [randomCard(deck), randomCard(deck)]
     dI1.setAttribute('src', dealerHand[0])
     dI2.setAttribute('src', cardBack)
+    playerScore(playerHand[0])
+    playerScore(playerHand[1])
+    console.log(playerSum)
     playerScoreCheck()
     dealerScoreCheck()
 }
@@ -170,6 +173,7 @@ hit.addEventListener('click', (evt) => {
     if (playerHand.length <= 2) {
         playerHand.push(randomCard(deck))
         pI3.setAttribute('src', playerHand[2])
+        playerScore(playerHand[2])
         dealerHand.push(randomCard(deck))
         dI2.setAttribute('src', dealerHand[1])
         dI3.setAttribute('src', cardBack)
@@ -178,6 +182,7 @@ hit.addEventListener('click', (evt) => {
     else if (playerHand.length <= 3) {
         playerHand.push(randomCard(deck))
         pI4.setAttribute('src', playerHand[3])
+        playerScore(playerHand[3])
         dealerHand.push(randomCard(deck))
         dI3.setAttribute('src', dealerHand[2])
         dI4.setAttribute('src', cardBack)
@@ -186,6 +191,7 @@ hit.addEventListener('click', (evt) => {
     else if (playerHand.length <= 4) {
         playerHand.push(randomCard(deck))
         pI5.setAttribute('src', playerHand[4])
+        playerScore(playerHand[4])
         console.log(playerSum)
     }
 })
@@ -235,10 +241,6 @@ const playerScore = (id) => {
 
 
 const playerScoreCheck = () => {
-    console.log('Player score being checked')
-    playerSum += playerScore(playerHand)
-
-
     if (playerSum > 21) {
         alert('Bust!')
         playerSum = 0
@@ -261,7 +263,6 @@ const playerScoreCheck = () => {
 
 
 const dealerScoreCheck = () => {
-    console.log('Dealer score being checked')
     for (let i = 0; i < dealerHand.length; i++) {
         dealerSum += dealerHand[i]
         if (dealerSum > 21) {
