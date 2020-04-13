@@ -23,16 +23,24 @@ let p02 = document.querySelector('#p02')
 let p03 = document.querySelector('#p03')
 let p04 = document.querySelector('#p04')
 let p05 = document.querySelector('#p05')
+// player images
+let pI1 = document.querySelector('#pI1')
+let pI2 = document.querySelector('#pI2')
+let pI3 = document.querySelector('#pI3')
+let pI4 = document.querySelector('#pI4')
+let pI5 = document.querySelector('#pI5')
+
 const hit = document.querySelector('#hit')
 const stand = document.querySelector('#stand')
 const input = document.querySelector('#input')
 const submit = document.querySelector('#submit')
-let cards = ["ace", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"]
 
 let message = document.querySelector('#message')
 message.textContent = 'Place your bet!'
 
 // Define cards
+let twoC = document.createElement('img')
+twoC.src = "cards/2C.jpg"
 
 // Dealer card display area
 
@@ -54,14 +62,18 @@ const randomNum = (max) => {
 
 const startGame = () => {
     message.textContent = "Hit or Stand?"
-    p01 = randomNum(13)
+    p01 = randomNum(10)
+
     playerSum = playerSum + Number(p01)
-    p02 = randomNum(13)
-    playerSum = playerSum + Number(p02)
-    console.log(playerSum)
-    d01 = randomNum(13)
-    dealerSum = d01
-    console.log(dealerSum)
+
+    p02 = randomNum(10)
+
+}
+playerSum = playerSum + Number(p02)
+console.log(playerSum)
+d01 = randomNum(10)
+dealerSum = d01
+console.log(dealerSum)
 }
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
@@ -71,6 +83,7 @@ submit.addEventListener('click', (evt) => {
         money.textContent = (`$${moneySum}`)
         console.log(money)
         startGame()
+
     }
     else if (input.value <= 0) {
         message.textContent = 'A bet must be placed to play!'
@@ -78,20 +91,39 @@ submit.addEventListener('click', (evt) => {
 })
 
 hit.addEventListener('click', (evt) => {
-    if (p03 === null || p03 === undefined) {
-        p03 = randomNum(13)
-        playerSum = playerSum + Number(p03)
-        console.log(playerSum)
-    }
-    else if (p04 === null || p04 === undefined) {
-        p04 = randomNum(13)
-        playerSum = playerSum + Number(p04)
-        console.log(playerSum)
-    }
-    else if (p05 === null || p05 === undefined) {
-        p05 = randomNum(13)
+    console.log('hit working')
+    if (Number(p04) > 0) {
+        p05 = randomNum(10)
         playerSum = playerSum + Number(p05)
         console.log(playerSum)
+        console.log('p05 working')
+    }
+    else if (Number(p03) > 0) {
+        p04 = randomNum(10)
+        playerSum = playerSum + Number(p04)
+        console.log(playerSum)
+        console.log('p04 working')
+    }
+    else if (Number(p02) > 0) {
+        p03 = randomNum(10)
+        playerSum = playerSum + Number(p03)
+        console.log(playerSum)
+        console.log('p03 working')
+    }
+
+    if (playerSum > 21) {
+        alert("You've passed 21! You lose!")
+        playerSum = 0
+        dealerSum = 0
+    }
+    if (dealerSum > 21) {
+        alert("The dealer's passed 21! You win!")
+        playerSum = 0
+        dealerSum = 0
     }
 })
-
+if (Number(p01) > 0) {
+    pI1.setAttribute('src', "cards/10C.jpg")
+    pI1.setAttribute('width', '95px')
+    console.log('append working')
+}
