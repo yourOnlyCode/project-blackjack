@@ -52,6 +52,12 @@ let deck = [
     2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
     2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11
 ]
+let deckScore = [
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11
+]
 
 let cardBack = "cards/Green_back.jpg"
 
@@ -143,10 +149,13 @@ const startGame = () => {
 }
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
+    playerScoreCheck()
+    dealerScoreCheck()
     if (input.value > 0) {
         evt.preventDefault()
         moneySum = moneySum - Number(input.value)
         money.textContent = (`$${moneySum}`)
+        console.log(playerSum)
         console.log(money)
         startGame()
 
@@ -159,14 +168,13 @@ submit.addEventListener('click', (evt) => {
 hit.addEventListener('click', (evt) => {
     playerScoreCheck()
     dealerScoreCheck()
-    console.log('hit working')
     if (playerHand.length <= 2) {
         playerHand.push(randomCard(deck))
         pI3.setAttribute('src', playerHand[2])
-        console.log('hit working again')
         dealerHand.push(randomCard(deck))
         dI2.setAttribute('src', dealerHand[1])
         dI3.setAttribute('src', cardBack)
+        console.log(playerSum)
     }
     else if (playerHand.length <= 3) {
         playerHand.push(randomCard(deck))
@@ -174,29 +182,43 @@ hit.addEventListener('click', (evt) => {
         dealerHand.push(randomCard(deck))
         dI3.setAttribute('src', dealerHand[2])
         dI4.setAttribute('src', cardBack)
+        console.log(playerSum)
     }
     else if (playerHand.length <= 4) {
         playerHand.push(randomCard(deck))
         pI5.setAttribute('src', playerHand[4])
-
+        console.log(playerSum)
     }
 })
-if (Number(p01) > 0) {
-    pI1.setAttribute('src', "cards/10C.jpg")
-    pI1.setAttribute('width', '95px')
-    console.log('append working')
-}
 
 const playerScoreCheck = () => {
     console.log('Player score being checked')
-    for (let i = 0; i < playerHand.length; i++) {
-        playerSum += playerHand[i]
-        if (playerSum > 21) {
-            alert('Bust!')
-            playerHand = []
+    for (let i = 0; i < deck.length; i++) {
+        for (let j = 0; j < deckScore.length; j++) {
+            deck[i] === deckScore[i]
+            
+            playerSum += playerHand + deckScore[i]
+            if (playerSum > 21) {
+                alert('Bust!')
+                playerSum = 0
+                dealerSum = 0
+                playerHand.length = 0
+                dealerHand.length = 0
+                pI1.removeAttribute('src', playerHand[0])
+                pI2.removeAttribute('src', playerHand[1])
+                pI3.removeAttribute('src', playerHand[2])
+                pI4.removeAttribute('src', playerHand[3])
+                pI5.removeAttribute('src', playerHand[4])
+                dI1.removeAttribute('src', dealerHand[0])
+                dI2.removeAttribute('src', dealerHand[1])
+                dI3.removeAttribute('src', dealerHand[2])
+                dI4.removeAttribute('src', dealerHand[3])
+                dI5.removeAttribute('src', dealerHand[4])
+            }
         }
     }
 }
+
 
 const dealerScoreCheck = () => {
     console.log('Dealer score being checked')
@@ -204,7 +226,8 @@ const dealerScoreCheck = () => {
         dealerSum += dealerHand[i]
         if (dealerSum > 21) {
             alert("Dealer's bust! You win!")
-            dealerHand = []
+            playerHand.length = 0
+            dealerHand.length = 0
         }
     }
 }
