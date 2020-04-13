@@ -149,7 +149,7 @@ submit.addEventListener('click', (evt) => {
         money.textContent = (`$${moneySum}`)
         console.log(money)
         startGame()
-        scoreCheck()
+        playerScoreCheck()
 
     }
     else if (input.value <= 0) {
@@ -163,6 +163,8 @@ hit.addEventListener('click', (evt) => {
         playerHand.push(randomCard(deck))
         pI3.setAttribute('src', playerHand[2])
         console.log('hit working again')
+        dealerHand.push(randomCard(deck))
+        dI2.setAttribute('src', dealerHand[1])
     }
     else if (playerHand.length <= 3) {
         playerHand.push(randomCard(deck))
@@ -182,11 +184,19 @@ if (Number(p01) > 0) {
 const playerScoreCheck = () => {
     for (let i = 0; i < playerHand.length; i++) {
         playerSum += playerHand[i]
+        if (playerSum > 21) {
+            alert('Bust!')
+            playerHand = []
+        }
     }
 }
 
 const dealerScoreCheck = () => {
-    for (let i = 0; i < playerHand.length; i++) {
-        playerSum += playerHand[i]
+    for (let i = 0; i < dealerHand.length; i++) {
+        dealerSum += dealerHand[i]
+        if (dealerSum > 21) {
+            alert("Dealer's bust! You win!")
+            dealerHand = []
+        }
     }
 }
