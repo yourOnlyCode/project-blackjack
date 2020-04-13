@@ -178,6 +178,8 @@ hit.addEventListener('click', (evt) => {
         dI2.setAttribute('src', dealerHand[1])
         dI3.setAttribute('src', cardBack)
         console.log(playerSum)
+        playerScoreCheck()
+        dealerScoreCheck()
     }
     else if (playerHand.length <= 3) {
         playerHand.push(randomCard(deck))
@@ -187,12 +189,31 @@ hit.addEventListener('click', (evt) => {
         dI3.setAttribute('src', dealerHand[2])
         dI4.setAttribute('src', cardBack)
         console.log(playerSum)
+        playerScoreCheck()
+        dealerScoreCheck()
     }
     else if (playerHand.length <= 4) {
         playerHand.push(randomCard(deck))
         pI5.setAttribute('src', playerHand[4])
         playerScore(playerHand[4])
         console.log(playerSum)
+        playerScoreCheck()
+        dealerScoreCheck()
+    }
+})
+
+stand.addEventListener('click', (evt) => {
+    if (playerHand.length <= 2) {
+        dI2.setAttribute('src', dealerHand[1])
+        finalCheck()
+    }
+    else if (playerHand.length <= 3) {
+        dI3.setAttribute('src', dealerHand[2])
+        finalCheck()
+    }
+    else if (playerHand.length <= 4) {
+        dI4.setAttribute('src', dealerHand[3])
+        finalCheck()
     }
 })
 
@@ -243,20 +264,17 @@ const playerScore = (id) => {
 const playerScoreCheck = () => {
     if (playerSum > 21) {
         alert('Bust!')
-        playerSum = 0
-        dealerSum = 0
-        playerHand.length = 0
-        dealerHand.length = 0
-        pI1.removeAttribute('src', playerHand[0])
-        pI2.removeAttribute('src', playerHand[1])
-        pI3.removeAttribute('src', playerHand[2])
-        pI4.removeAttribute('src', playerHand[3])
-        pI5.removeAttribute('src', playerHand[4])
-        dI1.removeAttribute('src', dealerHand[0])
-        dI2.removeAttribute('src', dealerHand[1])
-        dI3.removeAttribute('src', dealerHand[2])
-        dI4.removeAttribute('src', dealerHand[3])
-        dI5.removeAttribute('src', dealerHand[4])
+        refreshBoard()
+    }
+}
+
+const finalCheck = () => {
+    if (playerSum > dealerSum) {
+        alert(`You win! ${playerSum} to ${dealerSum}!`)
+    }
+    if (playerSum < dealerSum) {
+        alert(`You lose! ${dealerSum} to ${playerSum}!`)
+        refreshBoard()
     }
 }
 
@@ -273,3 +291,20 @@ const dealerScoreCheck = () => {
     }
 }
 console.log(playerScore(playerHand))
+
+const refreshBoard = () => {
+    playerSum = 0
+    dealerSum = 0
+    playerHand.length = 0
+    dealerHand.length = 0
+    pI1.removeAttribute('src', playerHand[0])
+    pI2.removeAttribute('src', playerHand[1])
+    pI3.removeAttribute('src', playerHand[2])
+    pI4.removeAttribute('src', playerHand[3])
+    pI5.removeAttribute('src', playerHand[4])
+    dI1.removeAttribute('src', dealerHand[0])
+    dI2.removeAttribute('src', dealerHand[1])
+    dI3.removeAttribute('src', dealerHand[2])
+    dI4.removeAttribute('src', dealerHand[3])
+    dI5.removeAttribute('src', dealerHand[4])
+}
