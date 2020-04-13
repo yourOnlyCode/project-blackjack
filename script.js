@@ -174,9 +174,11 @@ hit.addEventListener('click', (evt) => {
         playerHand.push(randomCard(deck))
         pI3.setAttribute('src', playerHand[2])
         playerScore(playerHand[2])
+
         dealerHand.push(randomCard(deck))
         dI2.setAttribute('src', dealerHand[1])
         dI3.setAttribute('src', cardBack)
+
         console.log(playerSum)
         playerScoreCheck()
         dealerScoreCheck()
@@ -185,9 +187,11 @@ hit.addEventListener('click', (evt) => {
         playerHand.push(randomCard(deck))
         pI4.setAttribute('src', playerHand[3])
         playerScore(playerHand[3])
+
         dealerHand.push(randomCard(deck))
         dI3.setAttribute('src', dealerHand[2])
         dI4.setAttribute('src', cardBack)
+
         console.log(playerSum)
         playerScoreCheck()
         dealerScoreCheck()
@@ -196,6 +200,7 @@ hit.addEventListener('click', (evt) => {
         playerHand.push(randomCard(deck))
         pI5.setAttribute('src', playerHand[4])
         playerScore(playerHand[4])
+
         console.log(playerSum)
         playerScoreCheck()
         dealerScoreCheck()
@@ -260,6 +265,48 @@ const playerScore = (id) => {
     return false
 }
 
+const dealerScore = (id) => {
+    if (id.match(/[2]/gi)) {
+        return dealerSum += 2
+    }
+    else if (id.match(/[3]/gi)) {
+        return dealerSum += 3
+    }
+    else if (id.match(/[4]/gi)) {
+        return dealerSum += 4
+    }
+    else if (id.match(/[5]/gi)) {
+        return dealerSum += 5
+    }
+    else if (id.match(/[6]/gi)) {
+        return dealerSum += 6
+    }
+    else if (id.match(/[7]/gi)) {
+        return dealerSum += 7
+    }
+    else if (id.match(/[8]/gi)) {
+        return dealerSum += 8
+    }
+    else if (id.match(/[9]/gi)) {
+        return dealerSum += 9
+    }
+    else if (id.match(/[10]/gi)) {
+        return dealerSum += 10
+    }
+    else if (id.match(/[jJ]/gi)) {
+        return dealerSum += 10
+    }
+    else if (id.match(/[qQ]/gi)) {
+        return dealerSum += 10
+    }
+    else if (id.match(/[kK]/gi)) {
+        return dealerSum += 10
+    }
+    else if (id.match(/[aA]/gi)) {
+        return dealerSum += 11
+    }
+    return false
+}
 
 const playerScoreCheck = () => {
     if (playerSum > 21) {
@@ -302,6 +349,7 @@ const refreshBoard = () => {
     pI3.removeAttribute('src', playerHand[2])
     pI4.removeAttribute('src', playerHand[3])
     pI5.removeAttribute('src', playerHand[4])
+
     dI1.removeAttribute('src', dealerHand[0])
     dI2.removeAttribute('src', dealerHand[1])
     dI3.removeAttribute('src', dealerHand[2])
