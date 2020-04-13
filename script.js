@@ -150,8 +150,6 @@ const startGame = () => {
 }
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
-    playerScoreCheck()
-    dealerScoreCheck()
     if (input.value > 0) {
         evt.preventDefault()
         moneySum = moneySum - Number(input.value)
@@ -196,11 +194,49 @@ const playerScore = (id) => {
     if (id.match(/[2]/gi)) {
         return playerSum += 2
     }
+    else if (id.match(/[3]/gi)) {
+        return playerSum += 3
+    }
+    else if (id.match(/[4]/gi)) {
+        return playerSum += 4
+    }
+    else if (id.match(/[5]/gi)) {
+        return playerSum += 5
+    }
+    else if (id.match(/[6]/gi)) {
+        return playerSum += 6
+    }
+    else if (id.match(/[7]/gi)) {
+        return playerSum += 7
+    }
+    else if (id.match(/[8]/gi)) {
+        return playerSum += 8
+    }
+    else if (id.match(/[9]/gi)) {
+        return playerSum += 9
+    }
+    else if (id.match(/[10]/gi)) {
+        return playerSum += 10
+    }
+    else if (id.match(/[jJ]/gi)) {
+        return playerSum += 10
+    }
+    else if (id.match(/[qQ]/gi)) {
+        return playerSum += 10
+    }
+    else if (id.match(/[kK]/gi)) {
+        return playerSum += 10
+    }
+    else if (id.match(/[aA]/gi)) {
+        return playerSum += 11
+    }
+    return false
 }
 
 
 const playerScoreCheck = () => {
     console.log('Player score being checked')
+    playerSum += playerScore(playerHand)
 
 
     if (playerSum > 21) {
@@ -221,7 +257,7 @@ const playerScoreCheck = () => {
         dI5.removeAttribute('src', dealerHand[4])
     }
 }
-}
+
 
 
 const dealerScoreCheck = () => {
@@ -235,3 +271,4 @@ const dealerScoreCheck = () => {
         }
     }
 }
+console.log(playerScore(playerHand))
