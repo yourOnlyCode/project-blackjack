@@ -8,7 +8,7 @@ let money = document.querySelector('#money')
 money.textContent = ' $500'
 
 let dealer
-let dealerHand
+let dealerHand = []
 let dealerSum = 0
 let d01 = document.querySelector('#d01')
 let d02 = document.querySelector('#d02')
@@ -16,7 +16,7 @@ let d03 = document.querySelector('#d03')
 let d04 = document.querySelector('#d04')
 let d05 = document.querySelector('#d05')
 let player
-let playerHand
+let playerHand = []
 let playerSum = 0
 let p01 = document.querySelector('#p01')
 let p02 = document.querySelector('#p02')
@@ -39,8 +39,14 @@ let message = document.querySelector('#message')
 message.textContent = 'Place your bet!'
 
 // Define cards
-let twoC = document.createElement('img')
-twoC.src = "cards/2C.jpg"
+let deck = [
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11,
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11
+]
+
+
 
 // Dealer card display area
 
@@ -57,23 +63,24 @@ twoC.src = "cards/2C.jpg"
 // Board functions
 // Keeps the random card between 1 and 13 (ace - king)
 const randomNum = (max) => {
-    return Math.floor(Math.random() * Math.floor(max) + 1)
+    return Math.floor(Math.random() * Math.floor(max) + 2)
 }
 
 const startGame = () => {
     message.textContent = "Hit or Stand?"
     p01 = randomNum(10)
+    pI1 = playerHand[]
 
     playerSum = playerSum + Number(p01)
 
     p02 = randomNum(10)
 
-}
-playerSum = playerSum + Number(p02)
-console.log(playerSum)
-d01 = randomNum(10)
-dealerSum = d01
-console.log(dealerSum)
+
+    playerSum = playerSum + Number(p02)
+    console.log(playerSum)
+    d01 = randomNum(10)
+    dealerSum = d01
+    console.log(dealerSum)
 }
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
@@ -112,12 +119,12 @@ hit.addEventListener('click', (evt) => {
     }
 
     if (playerSum > 21) {
-        alert("You've passed 21! You lose!")
+        alert("Bust!")
         playerSum = 0
         dealerSum = 0
     }
     if (dealerSum > 21) {
-        alert("The dealer's passed 21! You win!")
+        alert("Dealer's bust! You win!")
         playerSum = 0
         dealerSum = 0
     }
