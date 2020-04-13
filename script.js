@@ -3,6 +3,7 @@
 // Establish variables:
 let score = document.querySelector('#score')
 score.textContent = 'Bank: '
+let moneySum = 500
 let money = document.querySelector('#money')
 money.textContent = ' $500'
 
@@ -26,7 +27,7 @@ const hit = document.querySelector('#hit')
 const stand = document.querySelector('#stand')
 const input = document.querySelector('#input')
 const submit = document.querySelector('#submit')
-let cars = ["ace", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"]
+let cards = ["ace", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"]
 let message = document.querySelector('#message')
 message.textContent = 'Place your bet!'
 
@@ -47,25 +48,47 @@ message.textContent = 'Place your bet!'
 const randomNum = (max) => {
     return Math.floor(Math.random() * Math.floor(max) + 1)
 }
-console.log(randomNum(21))
 
 const startGame = () => {
     message.textContent = "Hit or Stand?"
-    p01.textContent = randomNum(13)
-    playerSum = p01
-    p02.textContent = randomNum(13)
-    playerSum = p02
+    p01 = randomNum(13)
+    playerSum = playerSum + Number(p01)
+    p02 = randomNum(13)
+    playerSum = playerSum + Number(p02)
     console.log(playerSum)
-    d01.textContent = randomNum(13)
+    d01 = randomNum(13)
     dealerSum = d01
     console.log(dealerSum)
 }
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
-    startGame()
-    evt.preventDefault()
-    money = money - Number(input.value)
-    money.textContent = (`$${money}`)
-    console.log(money)
+    if (input.value > 0) {
+        evt.preventDefault()
+        moneySum = moneySum - Number(input.value)
+        money.textContent = (`$${moneySum}`)
+        console.log(money)
+        startGame()
+    }
+    else if (input.value <= 0) {
+        message.textContent = 'A bet must be placed to play!'
+    }
+})
+
+hit.addEventListener('click', (evt) => {
+    if (p03.textContent === null || p03.textContent === undefined) {
+        p03 = randomNum(13)
+        playerSum = playerSum + p03
+        console.log(playerSum)
+    }
+    else if (p04.textContent === null || p04.textContent === undefined) {
+        p04 = randomNum(13)
+        playerSum = playerSum + p04
+        console.log(playerSum)
+    }
+    else if (p05.textContent === null || p05.textContent === undefined) {
+        p05 = randomNum(13)
+        playerSum = playerSum + p05
+        console.log(playerSum)
+    }
 })
 
