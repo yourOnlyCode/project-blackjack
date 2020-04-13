@@ -75,3 +75,6 @@ deck[48] = "cards/JS.jpg"
 deck[49] = "cards/QS.jpg"
 deck[50] = "cards/KS.jpg"
 deck[51] = "cards/AS.jpg"
+
+// define submit event
+
