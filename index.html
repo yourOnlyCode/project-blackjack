@@ -4,34 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BlackJack</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <div class="dealer"></div>
-        <div class="dealer"></div>
-        <div class="dealer"></div>
-        <div class="dealer"></div>
-        <div class="dealer"></div>
+        <div id="title">BlackJack</div>
+    </div>
+    <div class="container">
+        <div id="message"></div>
+    </div>
+    <div class="container">
+        <div class="dealer" id="d01"></div>
+        <div class="dealer" id="d02"></div>
+        <div class="dealer" id="d03"></div>
+        <div class="dealer" id="d04"></div>
+        <div class="dealer" id="d05"></div>
     </div>
 
     <div class="container">
-        <div class="player"></div>
-        <div class="player"></div>
-        <div class="player"></div>
-        <div class="player"></div>
-        <div class="player"></div>
+        <div class="player" id="p01"></div>
+        <div class="player" id="p02"></div>
+        <div class="player" id="p03"></div>
+        <div class="player" id="p04"></div>
+        <div class="player" id="p05"></div>
     </div>
 
     <div class="container">
-        <button class="board">Hit</button>
-        <button class="board">Stand</button>
-        <input type="form" placeholder="place bet to start" class="board"></input>
-        <input type="submit" class="board"></input>
-        <div class="board"></div>
+        <div id="score"></div>
+        <div id="money"></div>
+    </div>
+
+    <div class="container">
+        <button class="board" id="hit">Hit</button>
+        <button class="board" id="stand">Stand</button>
+        <input type="form" placeholder="place bet to start" class="board" id="inuput"></input>
+        <input type="submit" class="board" id="submit"></input>
     </div>
     <script src="script.js"></script>
 </body>

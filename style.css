@@ -15,14 +15,15 @@ div.player {
     height: 150px;
     width: 95px;
     display: flex;
-    margin-bottom: 25px;
+    margin: 0 5px 25px 5px
 }
+
 div.dealer {
     background: salmon;
     border: 5px solid black;
     height: 150px;
     width: 95px;
     display: flex;
-    margin-bottom: 25px;
-    margin-top: 25px;
+    margin: 25px 5px 25px 5px
 }
+
