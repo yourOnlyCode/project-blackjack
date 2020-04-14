@@ -7,6 +7,37 @@ body {
 
 #title {
     font-size: 60px;
+    animation-name: titleAnim;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes titleAnim {
+    
+    0%   {
+        transform: scale(1.0);
+        color: red;
+    }
+  22%  {
+      transform: scale(1.2);
+      color: yellow;
+    }
+  42%  {
+    transform: scale(1.0);
+      color: blue;
+    }
+  62% {
+    transform: scale(1.2);
+      color: purple
+    }
+  82% {
+    transform: scale(1.0);
+      color: green;
+    }
+    92% {
+        transform: scale(1.2);
+        color: red;
+    }
 }
 
 div.container {
