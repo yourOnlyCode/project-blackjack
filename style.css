@@ -8,11 +8,10 @@ div#imageContainer {
     background: url('https://i.pinimg.com/originals/32/54/17/325417b6089534edd04b44c07a5e680e.png');
     background-size: cover;
 
-    back
     background-repeat: repeat-y;
 
     animation-name: backgroundImage;
-    animation-duration: 120s;
+    animation-duration: 1500s;
     animation-iteration-count: infinite;
 }
 
@@ -190,7 +189,7 @@ div#d01 {
     animation-iteration-count: 2;
 }
 div#d02 {
-    animation: shuffleD 1.8s linear .2s;
+    animation: shuffleD 1.9s linear .2s;
     animation-iteration-count: 2;
 }
 div#d03 {
@@ -198,7 +197,7 @@ div#d03 {
     animation-iteration-count: 2;
 }
 div#d04 {
-    animation: shuffleD 2s linear .2s;
+    animation: shuffleD 1.7s linear .2s;
     animation-iteration-count: 2;
 }
 div#d05 {
@@ -221,6 +220,6 @@ div#d05 {
         background-position: 0% 0%;
     }
     50% {
-        background-position: 0% 1000%
+        background-position: 0% 10000%
     }
 }
