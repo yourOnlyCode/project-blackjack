@@ -1,3 +1,6 @@
+Welcome to Blackjack :)
+
+
 For best user experience, run on Firefox! --
 
 1. Link to Blackjack project: https://youronlyblackjack.netlify.com/
@@ -5,3 +8,4 @@ For best user experience, run on Firefox! --
 2. Link to Trello Poject Board: https://trello.com/b/NrpNaHVL/welcome-to-trello
 
 ![wire frame photo](images/wireframe.jpg)
+
