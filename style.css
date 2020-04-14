@@ -38,11 +38,21 @@ div.dealer {
     border: 3px solid black;
     text-decoration: none;
     text-align: center;
-    background: white;
+    background: whitesmoke;
 }
 
 div#message {
     padding: 5px 8px 5px 8px;
     border-color: gold;
-    background: palegoldenrod;
+    background: whitesmoke;
+}
+
+div.stakes {
+    margin: 10px 5px 10px 5px;
+}
+
+div.cash {
+    padding: 5px 8px 5px 8px;
+    border-color: gold;
+    background: whitesmoke;
 }

@@ -1,5 +1,13 @@
 // blackjack time
 
+// Audio
+const music = document.querySelector('audio')
+
+music.oncanplay = function () {
+    music.play()
+}
+music.load()
+
 // Establish variables:
 let score = document.querySelector('#score')
 score.textContent = 'Bank: '
