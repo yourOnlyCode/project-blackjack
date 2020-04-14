@@ -416,7 +416,6 @@ stand.addEventListener('click', (evt) => {
         dealerScoreCheck()
         finalCheck()
     }
-    finalCheck()
 })
 
 newGame.addEventListener('click', (evnt) => {
