@@ -41,7 +41,11 @@ const hit = document.querySelector('#hit')
 const stand = document.querySelector('#stand')
 const input = document.querySelector('#input')
 const submit = document.querySelector('#submit')
-let newGame = document.querySelector('#refresh')
+const newGame = document.querySelector('#refresh')
+let stakesAmount = 0
+let stakes = document.querySelector('#stakesAmount')
+stakes.textContent = ' $0'
+
 
 let message = document.querySelector('#message')
 message.textContent = 'Place your bet!'
@@ -213,18 +217,11 @@ function randomCard(deck) {
     return deck[randomI]
 }
 
-
-// Establish elements on page
-
-
-// Board interactions
-
-
-// Board functions
-// Keeps the random card between 1 and 13 (ace - king)
+// Use for the amount at stake
 const randomNum = (max) => {
     return Math.floor(Math.random() * Math.floor(max) + 2)
 }
+
 // starts game with dealer having one face up card and face down card and player two face up cards
 const startGame = () => {
     message.textContent = "Hit or Stand?"
@@ -253,8 +250,13 @@ submit.addEventListener('click', (evt) => {
         evt.preventDefault()
         moneySum = moneySum - Number(input.value)
         money.textContent = (`$${moneySum}`)
+
         console.log(playerSum)
         console.log(money)
+
+        stakesAmount = Number(input.value) * 2
+        stakes.textContent = (`$${stakesAmount}`)
+
         startGame()
 
     }
@@ -268,6 +270,9 @@ const refreshBoard = () => {
     dealerSum = 0
     playerHand.length = 0
     dealerHand.length = 0
+    stakesAmount = 0
+    stakes.textContent = '$0'
+    message.textContent = 'Place your bet!'
     pI1.removeAttribute('src', playerHand[0])
     pI2.removeAttribute('src', playerHand[1])
     pI3.removeAttribute('src', playerHand[2])
@@ -284,22 +289,21 @@ const refreshBoard = () => {
 const finalCheck = () => {
     if (playerSum > dealerSum) {
         alert(`You win!`)
-        moneySum += input.value * 2
+        moneySum = moneySum + Number(stakesAmount)
+        money.textContent = (`$${moneySum}`)
+        stakesAmount = 0
     }
     if (playerSum < dealerSum && dealerSum < 22) {
         alert(`You lose!`)
     }
-    // if (playerSum = dealerSum) {
-    //     alert(`Push! Tie game.`)
-    //     money += input
-    //     refreshBoard()
-    // }
 }
 // Checks players score
 const playerScoreCheck = () => {
     if (playerSum === 21) {
         alert('Blackjack!')
-        moneySum += input.value * 2
+        moneySum = moneySum + Number(stakesAmount)
+        money.textContent = (`$${moneySum}`)
+        stakesAmount = 0
     }
     if (playerSum > 21) {
         alert('Bust!')
@@ -313,7 +317,9 @@ const dealerScoreCheck = () => {
     }
     if (dealerSum > 21) {
         alert('Dealer bust! You win!')
-        moneySum += input.value * 2
+        moneySum = moneySum + Number(stakesAmount)
+        money.textContent = (`$${moneySum}`)
+        stakesAmount = 0
     }
 }
 
@@ -376,18 +382,21 @@ stand.addEventListener('click', (evt) => {
         dealerScore(dealerHand[1])
         playerScoreCheck()
         dealerScoreCheck()
+        finalCheck()
     }
     else if (playerHand.length <= 3) {
         dI3.setAttribute('src', dealerHand[2])
         dealerScore(dealerHand[2])
         playerScoreCheck()
         dealerScoreCheck()
+        finalCheck()
     }
     else if (playerHand.length <= 4) {
         dI4.setAttribute('src', dealerHand[3])
         dealerScore(dealerHand[3])
         playerScoreCheck()
         dealerScoreCheck()
+        finalCheck()
     }
     finalCheck()
 })

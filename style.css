@@ -1,6 +1,12 @@
 body {
     justify-content: center;
     align-items: center;
+    font-family: 'Righteous', cursive;
+    background: palegoldenrod;
+}
+
+#title {
+    font-size: 60px;
 }
 
 div.container {
@@ -27,3 +33,16 @@ div.dealer {
     margin: 25px 5px 25px 5px;
 }
 
+.board {
+    margin: 10px 10px 0 0;
+    border: 3px solid black;
+    text-decoration: none;
+    text-align: center;
+    background: white;
+}
+
+div#message {
+    padding: 5px 8px 5px 8px;
+    border-color: gold;
+    background: palegoldenrod;
+}
