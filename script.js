@@ -254,6 +254,9 @@ const startGame = () => {
 }
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
+    if (moneySum < 0) {
+        message.textContent = 'Inadequate funds.'
+    }
     if (input.value > 0) {
         evt.preventDefault()
         moneySum = moneySum - Number(input.value)
