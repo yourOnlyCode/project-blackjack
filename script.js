@@ -258,6 +258,8 @@ submit.addEventListener('click', (evt) => {
         message.textContent = 'Inadequate funds.'
     }
     if (input.value > 0) {
+        submit.disabled = true
+
         evt.preventDefault()
         moneySum = moneySum - Number(input.value)
         money.textContent = (`$${moneySum}`)
@@ -413,6 +415,7 @@ stand.addEventListener('click', (evt) => {
 })
 
 newGame.addEventListener('click', (evnt) => {
+    submit.disabled = false
     refreshBoard()
 })
 
