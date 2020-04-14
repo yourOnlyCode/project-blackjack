@@ -2,7 +2,8 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Righteous', cursive;
-    background: palegoldenrod;
+    background: url('https://i.pinimg.com/originals/32/54/17/325417b6089534edd04b44c07a5e680e.png');
+    background-size: cover;
 }
 
 #title {
@@ -20,19 +21,19 @@ body {
         transform: scale(1.0);
         color: darkgoldenrod;
     }
-  22%  {
+    22%  {
       transform: scale(1.2);
       color: beige;
     }
-  42%  {
+    42%  {
     transform: scale(1.0);
       color: bisque;
     }
-  62% {
+    62% {
     transform: scale(1.2);
-      color: chocolate
+    color: chocolate
     }
-  82% {
+    82% {
     transform: scale(1.0);
       color: coral;
     }
@@ -45,6 +46,37 @@ body {
         color: darkgoldenrod;
     }
 
+}
+
+@keyframes titleBeat {
+
+    0%   {
+        transform: scale(1.0);
+    }
+    1% {
+        transform: scale(1.2);
+    }
+    25%  {
+        transform: scale(1.0);
+    }
+    26% {
+        transform: scale(1.2);
+    }
+    50%  {
+        transform: scale(1.0);
+    }
+    51% {
+        transform: scale(1.2);
+    }
+    75% {
+        transform: scale(1.0);
+    }
+    76% {
+        transform: scale(1.2);
+    }
+    99% {
+        transform: scale(1.0);
+    }
 }
 
 div.container {
@@ -93,4 +125,75 @@ div.cash {
     padding: 5px 8px 5px 8px;
     border-color: gold;
     background: whitesmoke;
+}
+
+/* div#dealer {
+    animation: shuffle 3s linear .2s;
+    animation-iteration-count: 1;
+}
+
+div#player {
+    animation-name: shuffle;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+} */
+
+div#p01 {
+    animation: shuffleP 1.2s linear .2s;
+    animation-iteration-count: 2;
+}
+div#p02 {
+    animation: shuffleP 1.8s linear .2s;
+    animation-iteration-count: 2;
+}
+div#p03 {
+    animation: shuffleP 1.5s linear .2s;
+    animation-iteration-count: 2;
+}
+div#p04 {
+    animation: shuffleP 2s linear .2s;
+    animation-iteration-count: 2;
+}
+div#p05 {
+    animation: shuffleP 1.4s linear .2s;
+    animation-iteration-count: 2;
+}
+
+@keyframes shuffleP {
+    33% {
+        transform: translate(1000px, 50px)
+    }
+    66% {
+        transform: translate(-1000px, -45px)
+    }
+}
+div#d01 {
+    animation: shuffleD 1.2s linear .2s;
+    animation-iteration-count: 2;
+}
+div#d02 {
+    animation: shuffleD 1.8s linear .2s;
+    animation-iteration-count: 2;
+}
+div#d03 {
+    animation: shuffleD 1.5s linear .2s;
+    animation-iteration-count: 2;
+}
+div#d04 {
+    animation: shuffleD 2s linear .2s;
+    animation-iteration-count: 2;
+}
+div#d05 {
+    animation: shuffleD 1.4s linear .2s;
+    animation-iteration-count: 2;
+}
+
+
+@keyframes shuffleD {
+    33% {
+        transform: translate(-1000px, 60px)
+    }
+    66% {
+        transform: translate(1000px, -40px)
+    }
 }
