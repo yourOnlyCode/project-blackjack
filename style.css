@@ -6,38 +6,45 @@ body {
 }
 
 #title {
+    color: darkgoldenrod;
+    text-shadow: 2px 2px black;
     font-size: 60px;
     animation-name: titleAnim;
     animation-duration: 4s;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 8;
 }
 
 @keyframes titleAnim {
     
     0%   {
         transform: scale(1.0);
-        color: red;
+        color: darkgoldenrod;
     }
   22%  {
       transform: scale(1.2);
-      color: yellow;
+      color: beige;
     }
   42%  {
     transform: scale(1.0);
-      color: blue;
+      color: bisque;
     }
   62% {
     transform: scale(1.2);
-      color: purple
+      color: chocolate
     }
   82% {
     transform: scale(1.0);
-      color: green;
+      color: coral;
     }
     92% {
         transform: scale(1.2);
-        color: red;
+        color: darkgoldenrod;
     }
+    100% {
+        transform: scale(1.0);
+        color: darkgoldenrod;
+    }
+
 }
 
 div.container {
