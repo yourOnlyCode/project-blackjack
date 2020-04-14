@@ -54,9 +54,12 @@ let stakesAmount = 0
 let stakes = document.querySelector('#stakesAmount')
 stakes.textContent = ' $0'
 
-
 let message = document.querySelector('#message')
 message.textContent = 'Place your bet!'
+
+// Doesn't allow player to press hit or stand before game starts
+hit.disabled = true
+stand.disabled = true
 
 // Define cards
 let deck = [
@@ -73,7 +76,6 @@ let deckScore = [
 ]
 
 let cardBack = "cards/Green_back.jpg"
-
 
 deck[0] = "cards/2C.jpg"
 deck[1] = "cards/3C.jpg"
@@ -232,18 +234,19 @@ const randomNum = (max) => {
 
 // starts game with dealer having one face up card and face down card and player two face up cards
 const startGame = () => {
+    hit.disabled = false
+    stand.disabled = false
     message.textContent = "Hit or Stand?"
+    // player's hand array gets two random card values with images
     playerHand = [randomCard(deck), randomCard(deck)]
     pI1.setAttribute('src', playerHand[0])
     pI2.setAttribute('src', playerHand[1])
-
+    playerScore(playerHand[0])
+    playerScore(playerHand[1])
+    // dealer's hand array gets one random value with images
     dealerHand = [randomCard(deck), randomCard(deck)]
     dI1.setAttribute('src', dealerHand[0])
     dI2.setAttribute('src', cardBack)
-    // converts the image files names in the array into integer values to add to the scores
-    playerScore(playerHand[0])
-    playerScore(playerHand[1])
-
     dealerScore(dealerHand[0])
 
     console.log(`player sum ${playerSum}`)
@@ -252,6 +255,7 @@ const startGame = () => {
     playerScoreCheck()
     dealerScoreCheck()
 }
+
 // starts game when submit button is clicked
 submit.addEventListener('click', (evt) => {
     if (moneySum < 0) {
@@ -277,6 +281,7 @@ submit.addEventListener('click', (evt) => {
         message.textContent = 'A bet must be placed to play!'
     }
 })
+
 // refreshes the board after game is finished
 const refreshBoard = () => {
     playerSum = 0
