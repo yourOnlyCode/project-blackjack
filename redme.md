@@ -5,4 +5,3 @@ Welcome to Blackjack :)
 2. Link to Trello Poject Board: https://trello.com/b/NrpNaHVL/welcome-to-trello
 
 ![wire frame photo](images/wireframe.jpg)
-
